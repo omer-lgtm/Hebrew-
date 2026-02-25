@@ -1,0 +1,104 @@
+:root {
+  --bg-color: #0d1117;
+  --panel-bg: rgba(22, 27, 34, 0.7);
+  --text-primary: #e6edf3;
+  --text-secondary: #7d8590;
+  --accent: #2f81f7;
+  --accent-hover: #388bfd;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow: hidden;
+  direction: rtl; /* Hebrew Support */
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Editor Specifics */
+.editor-textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  padding: 1.5rem;
+}
+.editor-textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+  gap: 1rem;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editor-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: flex 0.5s ease;
+}
+
+.visualizer-section {
+  flex: 0;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+}
+
+.visualizer-section.open {
+  flex: 1;
+  opacity: 1;
+  width: auto;
+}
